@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env) => {
   return {
@@ -25,12 +26,25 @@ module.exports = (env) => {
             },
           },
         },
+        {
+          // Used to extract CSS
+          test: /\.css$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader"],
+        },
+        {
+          // Used to support sass files
+          test: /\.s[ac]ss$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        },
       ],
     },
     plugins: [
       // Generate the HTML file at build time
       new HtmlWebpackPlugin({
         title: "Webpack Starter - Boilerplate",
+      }),
+      new MiniCssExtractPlugin({
+        filename: "[name].css",
       }),
     ],
     // Webpack Server: run "start" script to start server
