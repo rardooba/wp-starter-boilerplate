@@ -39,9 +39,10 @@ module.exports = (env) => {
       ],
     },
     plugins: [
-      // Generate the HTML file at build time
+      // Generate the HTML file at build time based on the template
       new HtmlWebpackPlugin({
-        title: "Webpack Starter - Boilerplate",
+        template: path.resolve(__dirname, "./src/index.html"),
+        filename: "index.html",
       }),
       new MiniCssExtractPlugin({
         filename: "[name].css",
