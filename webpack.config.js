@@ -36,6 +36,16 @@ module.exports = (env) => {
           test: /\.s[ac]ss$/i,
           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
+        {
+          // Used to support JPG files
+          test: /\.jpg/,
+          type: "asset/resource",
+        },
+        {
+          // Used to support fonts
+          test: /\.(woff|woff2|eot|ttf|otf)$/i,
+          type: "asset/resource",
+        },
       ],
     },
     plugins: [
